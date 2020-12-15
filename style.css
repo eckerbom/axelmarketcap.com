@@ -2,17 +2,31 @@
   margin:auto;
 }
 
-.widget{
-  margin-top: 50px;
-}
-
-
 
 .welcomeContainer{
   background: rgba(100, 140, 100, 0.9);
   color: white;
   margin-top: 10px;
 }
+
+.listContainer{
+  background: rgba(100, 140, 100, 0.9);
+  margin-top: 10px;
+  padding: 10px;
+  padding-left: 10px;
+}
+
+.coinlist{
+  background: rgba(237, 237, 237, 0.9);
+  margin-top: 10px;
+  padding: 10px;
+}
+
+.coinlist td{
+  background: rgba(237, 237, 0, 0.9);
+  border: 1px solid black;
+}
+
 
 .coinStyle{
   background: rgba(100, 140, 100, 0.9);
@@ -26,8 +40,4 @@
 .loggoBar img{
   padding: 10px;
   width: 80%
-}
-
-.coinlist{
-
 }

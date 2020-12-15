@@ -1,27 +1,28 @@
 $(document).ready(function(){
 
-//dividing the url in a base and a endpoint. we could skip it but its good preparation if we want to take more APIs from the same base url
 let BASE_URL ="https://api.coingecko.com/api/v3/";
 let COINDATA_ENDPOINT = "coins/markets?vs_currency=usd&order=market_cap_desc&per_page=250&page=1&sparkline=true&price_change_percentage=1h%2C%2024h%2C%207d";
 
-//we combine the parts of the url into one with a variable that we refer to lateron
 let urlCoindata = BASE_URL + COINDATA_ENDPOINT;
 
-// first we make a function so hackers can´t hack
 function adList(){
-      // with fetch(url) we get the data from the url above
       fetch(urlCoindata)
-      //.then makes sure we wont continue until above is complete
       .then(function(res){
-        // we test with a console.log that we get data
         console.log(res);
-          //with jason we make the data readable
           res.json().then(function(data){
-                // we test with console.log that we get the whole array as intended
                 console.log(data);
-                //We create variables that contain the corresponding data.
+
+//https://stackoverflow.com/questions/171027/add-table-row-in-jquery
+                var table = $("cointable");
+
+                for (i=0; i<100; i++){
+                    var table = $("cointable");
+
+                    $("#cointable").last().append("<tr><td>New row</td></tr>");
+                }
+
+
                 let rank = data[0].market_cap_rank;
-                //with jQuery we join the data from the variable with an id from index.html
                 $("#mcaprank").html(rank);
                 console.log(rank);
 

@@ -4,17 +4,15 @@
 <head>
   <title>axelmarketcap.com</title>
   <link rel="stylesheet" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="logic.js"></script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body>
-
-
 
   <div class="container-xxl whole">
 
@@ -26,17 +24,38 @@
     <h1>axelMarketCap.com</h1>
     <h5>Assignment week 5 at IvanOnTech´s Bootcamp</h5>
   </div>
-
 </div>
+
+
 
 <!--     container for the list  -->
 
-<div class="container-fluid coinStyle">
+<div class="container-fluid listContainer">
   <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12 coinlist">
-      <h6>This is where the list will appear</h6>
-      <ol id="coinList">                                    <!--      Here is the coinList  -->
-      </ol>
+      <table id="cointable" style="width:100%">
+        <tbody>
+            <tr>
+                <th>Rank</th>
+                <!-- image + name + symbol (loggo + BITCOIN + BTC)-->
+                <th>Name</th>
+                <th>Price</th>
+                <th>24h</th>
+                <th>Market Cap</th>
+                <th>Volume</th>
+                <th>Circulating Supply</th>
+                <th>EXTRA</th>
+            </tr>
+            <tr>
+                <td class="rank" align="center"><p id="mcaprank"></p></td>
+                <td class="name" align="center"><p id="name"></p><p id="symbol"></p><p id="image"></p></td>
+                <td class="price"><p id="price"></p></td>
+                <td class="24h"><p id="change24h"></p></td>
+                <td class="marketcap"><p id="marketCap"></p></td>
+                <td class="volume"><p id="volume"></p></td>
+                <td class="circulatingsupply"><p id="supply"></p></td>
+                <td class="extra">...</td>
+            </tr>
     </div>
   </div>
 </div>
@@ -50,39 +69,6 @@
 <nav class="navbar fixed-bottom navbar-light bg-light">
   <a class="navbar-brand" href="#">axelmarketcap.com</a>
 </nav>
-
-
-
-<script>
-
-let BASE_URL ="https://api.coingecko.com/api/v3/";
-let COINDATA_ENDPOINT = "coins/markets?vs_currency=usd&order=market_cap_desc&per_page=250&page=1&sparkline=true&price_change_percentage=1h%2C%2024h%2C%207d";
-
-let urlCoindata = BASE_URL + COINDATA_ENDPOINT;
-
-
-      fetch(urlCoindata)                                           //fetch data from URL
-      .then(function(res){
-          res.json().then(function(data){                         //json making it readable
-              for(i = 0; i<100; i++){                             //for loop to go thru the list
-                var list = $("#coinList");                //accessing the list #-for id. will point to the ol-list in html
-
-
-                  $.each(urlCoindata, function(index,value){     //loop through url array, - anonymous function
-
-                      $("<li/>").text(value.name + ", " + value.market_cap_rank + ", " + value.market_cap).appendTo(list);    //li = listitem. adding data to the list - name, market cap and market cap rank
-                  });
-              }
-            });
-
-        });
-
-var mcaprank = data[i].market_cap_rank;
-
-</script>
-
-
-
 
 
 
