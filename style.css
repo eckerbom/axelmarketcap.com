@@ -1,0 +1,33 @@
+* {
+  margin:auto;
+}
+
+.widget{
+  margin-top: 50px;
+}
+
+
+
+.welcomeContainer{
+  background: rgba(100, 140, 100, 0.9);
+  color: white;
+  margin-top: 10px;
+}
+
+.coinStyle{
+  background: rgba(100, 140, 100, 0.9);
+  margin-top: 10px;
+}
+
+.loggoBar{
+  text-align: center;
+}
+
+.loggoBar img{
+  padding: 10px;
+  width: 80%
+}
+
+.coinlist{
+
+}
