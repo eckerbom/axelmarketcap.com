@@ -2,42 +2,44 @@
   margin:auto;
 }
 
+body {
+  background-color: lightblue;
+}
+
+.whole{
+  background-color: pink;
+}
+
 
 .welcomeContainer{
   background: rgba(100, 140, 100, 0.9);
   color: white;
-  margin-top: 10px;
+  text-align: center;
+
 }
 
 .listContainer{
   background: rgba(100, 140, 100, 0.9);
   margin-top: 10px;
-  padding: 10px;
-  padding-left: 10px;
+  margin-bottom: 60px;
 }
 
-.coinlist{
-  background: rgba(237, 237, 237, 0.9);
-  margin-top: 10px;
-  padding: 10px;
-}
 
+.coinlist {
+  background: rgba(237, 0, 0, 0.9);
+  border: 1px solid black;
+}
 .coinlist td{
   background: rgba(237, 237, 0, 0.9);
   border: 1px solid black;
-}
-
-
-.coinStyle{
-  background: rgba(100, 140, 100, 0.9);
-  margin-top: 10px;
-}
-
-.loggoBar{
-  text-align: center;
-}
-
-.loggoBar img{
+  font-size: 90%;
   padding: 10px;
-  width: 80%
+}
+
+
+
+
+.footer {
+  background: rgba(237, 237, 0, 0.9);
+  border: 1px solid black;
 }

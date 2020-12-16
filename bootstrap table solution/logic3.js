@@ -1,60 +1,53 @@
 $(document).ready(function(){
 
+//dividing the url in a base and a endpoint. we could skip it but its good preparation if we want to take more APIs from the same base url
 let BASE_URL ="https://api.coingecko.com/api/v3/";
 let COINDATA_ENDPOINT = "coins/markets?vs_currency=usd&order=market_cap_desc&per_page=250&page=1&sparkline=true&price_change_percentage=1h%2C%2024h%2C%207d";
 
+//we combine the parts of the url into one with a variable that we refer to lateron
 let urlCoindata = BASE_URL + COINDATA_ENDPOINT;
 
+// first we make a function so hackers can´t hack
 function adList(){
+      // with fetch(url) we get the data from the url above
       fetch(urlCoindata)
+      //.then makes sure we wont continue until above is complete
       .then(function(res){
+        // we test with a console.log that we get data
         console.log(res);
+          //with json we make the data readable
           res.json().then(function(data){
+                // we test with console.log that we get the whole array as intended
                 console.log(data);
+                //creating a for loop that will ad rows with coindata
+                for (i=0; i<250; i++){
 
-//https://stackoverflow.com/questions/171027/add-table-row-in-jquery
-                var table = $("cointable");
+                //cretaing variables for the data
+                let rank = data[i].market_cap_rank;
+                let name = data[i].name;
+                let symbol = data[i].symbol;
+                let image = data[i].image;
+                let price = data[i].current_price;
+                let change24Hpercentage = data[i].price_change_percentage_24h.toFixed(2);
+                let marketCap = data[i].market_cap;
+                let volume = data[i].total_volume;
+                let supply = data[i].circulating_supply;
 
-                function adRow(){
-                  for (i=0; i<100; i++){
-                    var table = document.getElementById("cointable");
-
-                    var row = table.insertRow(-1);
-
-                    // $("#cointable").last().append("<tr><td>New row</td></tr>");
-
-                    //insert new cells at the row
-                    var cell1 = row.insertCell(0);
-                    var cell2 = row.insertCell(1);
-                    var cell3 = row.insertCell(2);
-                    var cell4 = row.insertCell(3);
-                    var cell5 = row.insertCell(4);
-                    var cell6 = row.insertCell(5);
-                    var cell7 = row.insertCell(6);
-                    var cell8 = row.insertCell(7);
-
-                    //add some text to the new cells
-                    var mcaprank = data[i].market_cap_rank;
-                    var name = data[i].name;
-                    var symbol = data[i].symbol;
-                    var image = data[i].image;
-                    var price = data[i].price;
-                    var volume = data[i].total_volume;
-                    var supply = data[i].circulating_supply;
-                    var change = data[i].price_change_percentage_24h;
-
-                    cell1.innerhtml = mcaprank;
-                    cell2.innerhtml = name;
-                    cell3.innerhtml = symbol;
-                    cell4.innerhtml = image;
-                    cell5.innerhtml = price;
-                    cell6.innerhtml = volume;
-                    cell7.innerhtml = supply;
-                    cell8.innerhtml = change;
-                };
-              };
-              adRow();
-
+                //adding rows to coinTable with our variabels - OBS!!! se att det är komma efter varje rad!!!
+                $('#coinTable').append(
+                $('<div class="row"></div>').append(
+                $('<div class="col-md-1 col-sm-1 col-xs-1 rank"></div>').text(rank),
+                $('<div class="col-md-1 col-sm-1 col-xs-1 image"></div>').append(`<img src = "${image}" width="20" height="20">`),
+                $('<div class="col-md-1 col-sm-1 col-xs-1 name"></div>').text(name),
+                $('<div class="col-md-1 col-sm-1 col-xs-1 symbol"></div>').text(symbol.toUpperCase()),
+                $('<div class="col-md-1 col-sm-1 col-xs-1 price"></div>').text("$" + price),
+                $('<div class="col-md-1 col-sm-1 col-xs-1 24h"></div>').text(change24Hpercentage + "%"),
+                $('<div class="col-md-2 col-sm-2 col-xs-2 marketCap"></div>').html("$" + marketCap),
+                $('<div class="col-md-2 col-sm-2 col-xs-2 volume"></div>').html("$" + volume),
+                $('<div class="col-md-2 col-sm-1 col-xs-2 supply"></div>').html(supply + " " + symbol.toUpperCase())
+              )
+            );
+              }
             });
 
         });

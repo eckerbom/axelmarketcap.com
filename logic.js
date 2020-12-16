@@ -15,52 +15,62 @@ function adList(){
       .then(function(res){
         // we test with a console.log that we get data
         console.log(res);
-          //with jason we make the data readable
+          //with json we make the data readable
           res.json().then(function(data){
                 // we test with console.log that we get the whole array as intended
                 console.log(data);
-                //We create variables that contain the corresponding data.
-                let rank = data[0].market_cap_rank;
-                //with jQuery we join the data from the variable with an id from index.html
-                $("#mcaprank").html(rank);
-                console.log(rank);
+                //creating a for loop that will ad rows with coindata
+                for (i=0; i<250; i++){
 
-                let name = data[0].name;
-                $("#name").html(name);
+                //cretaing variables for the data
+                let rank = data[i].market_cap_rank;
+                let name = data[i].name;
+                let symbol = data[i].symbol;
+                let image = data[i].image;
+                let price = data[i].current_price;
+                let change24Hpercentage = data[i].price_change_percentage_24h.toFixed(2);
+                let marketCap = data[i].market_cap;
+                let volume = data[i].total_volume;
+                let supply = data[i].circulating_supply;
 
-                let symbol = data[0].symbol;
-                $("#symbol").html(symbol.toUpperCase());
+                //adding rows to coinTable with our variabels
+                $('#coinTable').append(
+                $('<tr class="content-row"></tr>').append(
+                $('<td id = "rank"></td>').css("text-align", "center").text(rank),
+                $('<td id = "name"></td>').css("font-weight", "bold").append(`<img src = "${image}" width="20" height="20">` + "&nbsp " + name + "&nbsp " + symbol.toUpperCase()),
+                $('<td id = "price"></td>').text("$" + price),
+                $('<td id = "change24"></td>').text(change24Hpercentage + "%"),
+                $('<td id = "marketCap"></td>').html("$" + marketCap),
+                $('<td id = "volume"></td>').html("$" + volume),
+                $('<td id = "supply"></td>').html(supply + " " + symbol.toUpperCase())
+                )
+                );
 
-                // FUNGERAR INTE ATT FÅ FRAM BILDEN :( :( :(
-                /*let image = data[0].image;
-                $("#image").append(""<img src="${image}" width="20" height="20">");*/
+                function colorChange(){
+                  if (change24Hpercentage > 0){
+                    $('#change24').css('color', 'green');
+                  } else {
+                    $('#change24').css('color', 'red');
+                  };
+                };
 
-                let price = data[0].current_price;
-                $("#price").html("$" + price);
+                colorChange();
 
-                // will fix if else here green/red +/- I know how to do it
-                let change24Hpercentage = data[0].price_change_percentage_24h.toFixed(2);
-                $("#change24h").html(change24Hpercentage + "%");
+              }
 
-                let marketCap = data[0].market_cap;
-                $("#marketCap").html("$" + marketCap);
 
-                let volume = data[0].total_volume;
-                $("#volume").html("$" + volume);
-
-                let supply = data[0].circulating_supply;
-                $("#supply").html(supply + " " + symbol.toUpperCase());
             });
 
+
         });
+
+
 
 
 };
 // calling the function
 adList();
 });
-
-
 
 
 
