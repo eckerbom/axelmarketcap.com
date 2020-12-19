@@ -1,134 +1,129 @@
+// EXCHANGES
+
+//document ready makes sure that the page loads before and script is activated
 $(document).ready(function(){
 
+//dividing the url in a base and a endpoint. we could skip it but its good preparation if we want to take more APIs from the same base url
 let BASE_URL ="https://api.coingecko.com/api/v3/";
-let COINDATA_ENDPOINT = "coins/markets?vs_currency=usd&order=market_cap_desc&per_page=250&page=1&sparkline=true&price_change_percentage=1h%2C%2024h%2C%207d";
+let COINDATA_ENDPOINT = "exchanges?per_page=250";
+let GLOBAL_ENDPOINT = "global";
 
+//we combine the parts of the url into one with a variable that we refer to lateron
 let urlCoindata = BASE_URL + COINDATA_ENDPOINT;
+let urlGlobalData = BASE_URL + GLOBAL_ENDPOINT;
 
+// first we make a function so hackers can´t hack
 function adList(){
+      // with fetch(url) we get the data from the url above
       fetch(urlCoindata)
+      //.then makes sure we wont continue until above is complete
       .then(function(res){
+        // we test with a console.log that we get data
         console.log(res);
+          //with json we make the data readable
           res.json().then(function(data){
+                // we test with console.log that we get the whole array as intended
                 console.log(data);
+                // creating a for loop that will ad rows with coindata
+                for (i=0; i<250; i++){
 
-//https://stackoverflow.com/questions/171027/add-table-row-in-jquery
-                var table = $("cointable");
+                // cretaing variables for the data
+                let rank = data[i].trust_score_rank;
+                let name = data[i].name;
+                let image = data[i].image;
+                let trustScore = data[i].trust_score;
+                // using toFixed() to controll number of decimals
+                let volume = data[i].trade_volume_24h_btc.toFixed(2);
+                let country = data[i].country;
+                let year = data[i].year_established;
+                let url = data[i].url;
 
-                function adRow(){
-                  for (i=0; i<100; i++){
-                    var table = document.getElementById("cointable");
-
-                    var row = table.insertRow(-1);
-
-                    // $("#cointable").last().append("<tr><td>New row</td></tr>");
-
-                    //insert new cells at the row
-                    var cell1 = row.insertCell(0);
-                    var cell2 = row.insertCell(1);
-                    var cell3 = row.insertCell(2);
-                    var cell4 = row.insertCell(3);
-                    var cell5 = row.insertCell(4);
-                    var cell6 = row.insertCell(5);
-                    var cell7 = row.insertCell(6);
-                    var cell8 = row.insertCell(7);
-
-                    //add some text to the new cells
-                    var mcaprank = data[i].market_cap_rank;
-                    var name = data[i].name;
-                    var symbol = data[i].symbol;
-                    var image = data[i].image;
-                    var price = data[i].price;
-                    var volume = data[i].total_volume;
-                    var supply = data[i].circulating_supply;
-                    var change = data[i].price_change_percentage_24h;
-
-                    cell1.innerhtml = mcaprank;
-                    cell2.innerhtml = name;
-                    cell3.innerhtml = symbol;
-                    cell4.innerhtml = image;
-                    cell5.innerhtml = price;
-                    cell6.innerhtml = volume;
-                    cell7.innerhtml = supply;
-                    cell8.innerhtml = change;
-                };
-              };
-              adRow();
-
+                // accessing the table in html.index and adding
+                $('#exchangeTable').append(
+                //adding rows to coinTable with our variabels
+                $('<tr class="content-row"></tr>').append(
+                // adds data to each cell in each row in the table
+                $('<td id = "rank"></td>').text(rank),
+                $('<td id = "image"></td>').append(`<img src = "${image}" width="40" height="40">`),
+                $('<td id = "name"></td>').text(name),
+                // using thousand separators function to make the data more displayable, function is further down in the code
+                $('<td id = "trustScore"></td>').html(trustScore),
+                $('<td id = "volume"></td>').html(thousands_separators(volume) + " BTC"),
+                $('<td id = "country"></td>').html(country),
+                $('<td id = "year"></td>').html(year),
+                $('<td id = "url"></td>').html(`<a href="${url}">${url}</a>`),
+                )
+                );
+              }
             });
-
         });
-
-
 };
+
+
+/*            Separates the number into thousands, to make it more readable.
+              from: https://www.w3resource.com/javascript-exercises/javascript-math-exercise-39.php
+*/
+          function thousands_separators(num)
+            {
+              var num_parts = num.toString().split(".");
+              num_parts[0] = num_parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+              return num_parts.join(".");
+            }
 // calling the function
 adList();
-});
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  /*    BELOW IS JUST OLD CODE - WILL BE REMOVED IN THE END
-________________________________________________________________________________
-
-
-      fetch(urlCoindata)
+// first we make a function so hackers can´t hack
+function adGlobal(){
+      // with fetch(url) we get the data from the url above
+      fetch(urlGlobalData)
+      //.then makes sure we wont continue until above is complete
       .then(function(res){
+        // we test with a console.log that we get data
+        console.log(res);
+          //with json we make the data readable
           res.json().then(function(data){
-            function redrawList(){
-                var list = $("#coinList");
-                list.html("");
+                // we test with console.log that we get the whole array as intended
+                console.log(data);
+                let coins = data.data.active_cryptocurrencies;
+                $("#hMarketCoins").text("Coins: " + coins);
+                console.log(data.data.active_cryptocurrencies);
+                let markets = data.data.markets;
+                $("#hMarketMarkets").html("Markets: " + markets);
 
-                $.each(urlCoindata, function(index,value){     //loop through fruits array, fruits list
+                let icos = data.data.ongoing_icos;
+                $("#hMarketIcos").html("Ongoing ICOs: " + icos);
 
-                    console.log(value);
+                let marketVolume = data.data.total_volume.usd.toFixed(0);
+                $("#hMarketVolume").html("24h Volume: " + "$" + thousands_separators(marketVolume));
 
-                    $("<li/>").text(value.name + ", " + value.market_cap_rank + ", " + value.market_cap).appendTo(list);    //li = listitem
-                });
-            };
-            redrawList();
+                let totalMcap = data.data.total_market_cap.usd.toFixed(0);
+                $("#hMarketCap").html("Market cap: " + "$" + thousands_separators(totalMcap));
+
+                let mCapChange = data.data.market_cap_change_percentage_24h_usd.toFixed(2);
+                $("#hMarketCapChange").html("24h: " + thousands_separators(mCapChange) + "%");
+
+                let dominanceBTC = data.data.market_cap_percentage.btc.toFixed(2);
+                let dominanceETH = data.data.market_cap_percentage.eth.toFixed(2);
+                let dominanceADA = data.data.market_cap_percentage.ada.toFixed(2);
+                $("#hDominance").html("Dominance: BTC: " + thousands_separators(dominanceBTC) + "%  " + "ETH: " + thousands_separators(dominanceETH) + "%  " + "ADA: " + thousands_separators(dominanceADA) + "%");
+
+                function colorChange24HMarket(){
+                  const list = $('<tr class="content-row table-dark"></tr>');
+
+                  if (mCapChange > 0){
+                    const green = $("#hMarketCapChange").html("24h: " + thousands_separators(mCapChange) + "%").css('color', '#25e8b4');
+                    return green;
+                  } else {
+                    const red = $("#hMarketCapChange").html("24h: " + thousands_separators(mCapChange) + "%").css('color', '#ff4545');
+                    return red;
+                  }
+                };
+                colorChange24HMarket();
           });
-        });
+      });
+  };
 
+adGlobal();
 
-________________________________________________________________________________
-
-        let BASE_URL ="https://api.coingecko.com/api/v3/";
-        let COINDATA_ENDPOINT = "coins/markets?vs_currency=usd&order=market_cap_desc&per_page=250&page=1&sparkline=true&price_change_percentage=1h%2C%2024h%2C%207d";
-
-        let urlCoindata = BASE_URL + COINDATA_ENDPOINT;
-
-
-              fetch(urlCoindata)                                           //fetch data from URL
-              .then(function(res){
-                  res.json().then(function(data){                         //json making it readable
-                      for(i = 0; i<100; i++){                             //for loop to go thru the list
-                        var list = $("#coinList");                //accessing the list #-for id. will point to the ol-list in html
-
-
-                          $.each(urlCoindata, function(index,value){     //loop through url array, - anonymous function
-
-                              $("<li/>").text(value.name + ", " + value.market_cap_rank + ", " + value.market_cap).appendTo(list);    //li = listitem. adding data to the list - name, market cap and market cap rank
-                          });
-                      }
-                    });
-
-                });
-
-        var mcaprank = data[i].market_cap_rank;
-
-
-*/
+});

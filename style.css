@@ -2,44 +2,216 @@
   margin:auto;
 }
 
+/*
 body {
-  background-color: lightblue;
+  background-image: url(bitcoinPattern2.jpg);
 }
-
-.whole{
-  background-color: pink;
-}
+*/
 
 
 .welcomeContainer{
-  background: rgba(100, 140, 100, 0.9);
+  background-image: url(bgFive.jpg);
   color: white;
   text-align: center;
-
+  font-family: 'Press Start 2P', cursive;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
-.listContainer{
-  background: rgba(100, 140, 100, 0.9);
-  margin-top: 10px;
+.welcomeContainer h1{
+  font-size: 30px;
+}
+
+
+.welcomeData img{
+  padding: 10px;
+  width: 80%
+}
+
+
+.navButtons {
+    background-color: grey;
+}
+
+.navbuttons:hover {
+  background-color: yellow;
+}
+
+.coinlist {
+  margin-top: 20px;
   margin-bottom: 60px;
 }
 
+/*            COINLIST HEADERS         */
 
-.coinlist {
-  background: rgba(237, 0, 0, 0.9);
-  border: 1px solid black;
-}
-.coinlist td{
-  background: rgba(237, 237, 0, 0.9);
-  border: 1px solid black;
-  font-size: 90%;
+.coinlist th{
+  background: rgba(0, 0, 0, 0.8);
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  font-size: 80%;
   padding: 10px;
+  text-align: right;
+  color: white;
+}
+
+#hRank{
+  text-align: center;
+}
+
+#h24h{
+  text-align: ;
+}
+
+#hName{
+  text-align: left;
+}
+
+#hSupply{
+  width: 10%;
+}
+
+#hAthDate{
+  width: 8%;
+}
+
+#hFromAth{
+  width: 8%;
+}
+
+#hToAth{
+  width: 8%;
 }
 
 
 
+/*          COINLIST CELLS       */
 
-.footer {
-  background: rgba(237, 237, 0, 0.9);
-  border: 1px solid black;
+.coinlist td{
+  background: rgba(255, 255, 255, 0.9);
+  border-bottom: 1px solid lightgrey;
+  font-size: 90%;
+  text-align: right;
+  padding: 15px;
+}
+
+#rank {
+    text-align: center;
+}
+
+#name {
+    font-weight: bold;
+    text-align: left;
+}
+
+
+/*    EXCHANGE STYLING      */
+
+.exchangelist {
+  margin-top: 20px;
+  margin-bottom: 60px;
+}
+
+/*            EXCHANGE HEADERS         */
+
+.exchangelist th{
+  background: rgba(0, 0, 0, 0.8);
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  font-size: 80%;
+  padding: 10px;
+  text-align: right;
+  color: white;
+}
+
+#hScore{
+  text-align: center;
+}
+
+#hUrl{
+  text-align: left;
+}
+
+#hVolume{
+  width: 25%;
+}
+
+#hCountry{
+  text-align: left;
+}
+
+#hYear{
+  width: 20%;
+  text-align: center;
+}
+
+/*          EXCHANGE CELLS       */
+
+.exchangelist td{
+  background: rgba(255, 255, 255, 0.9);
+  border-bottom: 1px solid lightgrey;
+  font-size: 90%;
+  text-align: right;
+  padding: 15px;
+}
+
+#trustScore{
+  text-align: center;
+}
+
+#url{
+  text-align: left;
+}
+
+#country{
+  text-align: left;
+}
+
+#year{
+  text-align: center;
+}
+
+
+/*          STATS PAGE       */
+
+
+.statsContainer1 {
+  margin-top: 20px;
+  margin-bottom: 60px;
+  text-align: center;
+}
+
+.statsContainer2 {
+  margin-top: 20px;
+  margin-bottom: 60px;
+  text-align: center;
+}
+
+
+
+/*          MARKET DATA       */
+
+.marketRow1{
+  text-align: center;
+  font-size: 90%;
+}
+
+.marketRow2{
+  text-align: center;
+  font-size: 90%;
+}
+
+
+
+/*               FOOTER             */
+.foooter {
+  background-image: url(bgFive.jpg);
+  border: 0px solid black;
+  text-align: center;
+  font-family: 'Press Start 2P', cursive;
+  color: white;
+
+}
+
+.foooter h3{
+  font-size: 30px;
 }

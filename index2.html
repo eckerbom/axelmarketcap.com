@@ -5,7 +5,7 @@
   <title>axelmarketcap.com</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="logic.js"></script>
+  <script src="logic2.js"></script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
@@ -14,7 +14,6 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-
 
 </head>
 <body>
@@ -25,107 +24,107 @@
   <script src="https://widgets.coingecko.com/coingecko-coin-price-marquee-widget.js"></script>
   <coingecko-coin-price-marquee-widget  coin-ids="trustswap,singularitynet,api3,yfdai-finance,cyberfi,unibright,curve-dao-token,bondly" currency="usd" background-color="#ffffff" locale="en" font-color="#000000"></coingecko-coin-price-marquee-widget>
 
+
+
 <div class="container-xxl whole">
 
 
-<!--      Welcome header container  -->
-<div class="container-fluid welcomeContainer">
-  <div class="row">
-    <div class="col-md-12 col-sm-12 col-xs-12 welcomeData">
-      <br>
-      <h1>axelMarketCap.com</h1>
-      <br>
+  <!--      Welcome header container  -->
+  <div class="container-fluid welcomeContainer">
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12 welcomeData">
+        <br>
+        <h1>axelMarketCap.com</h1>
+        <br>
+      </div>
     </div>
   </div>
-</div>
 
 
-<!--      MARKET DATA ROW 1  -->
+  <!--      MARKET DATA ROW 1  -->
 
-<div class="container-fluid marketRow1">
-  <div class="row">
-    <div class="col-md-3 col-sm-3 col-xs-6 ">
-                <p id="hMarketCoins"></p>
-    </div>
-    <div class="col-md-3 col-sm-3 col-xs-6 ">
-                <p id="hMarketMarkets"></p>
-    </div>
-    <div class="col-md-3 col-sm-3 col-xs-6 ">
-                <p id="hMarketIcos"></p>
-    </div>
-    <div class="col-md-3 col-sm-3 col-xs-6 ">
-                <p id="hMarketVolume"></p>
-    </div>
-  </div>
-</div>
-
-
-
-<!--      MARKET DATA ROW 2  -->
-
-<div class="container-fluid marketRow2">
-  <div class="row">
-    <div class="col-md-4 col-sm-4 col-xs-6 ">
-                <p id="hMarketCap"></p>
-    </div>
-    <div class="col-md-4 col-sm-4 col-xs-6 ">
-                <p id="hMarketCapChange"></p>
-    </div>
-    <div class="col-md-4 col-sm-4 col-xs-12 ">
-                <p id="hDominance"></p>
+  <div class="container-fluid marketRow1">
+    <div class="row">
+      <div class="col-md-3 col-sm-3 col-xs-6 ">
+                  <p id="hMarketCoins"></p>
+      </div>
+      <div class="col-md-3 col-sm-3 col-xs-6 ">
+                  <p id="hMarketMarkets"></p>
+      </div>
+      <div class="col-md-3 col-sm-3 col-xs-6 ">
+                  <p id="hMarketIcos"></p>
+      </div>
+      <div class="col-md-3 col-sm-3 col-xs-6 ">
+                  <p id="hMarketVolume"></p>
+      </div>
     </div>
   </div>
-</div>
 
 
 
+  <!--      MARKET DATA ROW 2  -->
+
+  <div class="container-fluid marketRow2">
+    <div class="row">
+      <div class="col-md-4 col-sm-4 col-xs-6 ">
+                  <p id="hMarketCap"></p>
+      </div>
+      <div class="col-md-4 col-sm-4 col-xs-6 ">
+                  <p id="hMarketCapChange"></p>
+      </div>
+      <div class="col-md-4 col-sm-4 col-xs-12 ">
+                  <p id="hDominance"></p>
+      </div>
+    </div>
+  </div>
 
 
 
 <!--      PAGE navigation  -->
 
 <nav class="nav nav-pills nav-fill">
-  <a class="nav-item nav-link active" href="index.html">Cryptocurrencies</a>
-  <a class="nav-item nav-link" href="index2.html">Exchanges</a>
+  <a class="nav-item nav-link " href="index.html">Cryptocurrencies</a>
+  <a class="nav-item nav-link active" href="index2.html">Exchanges</a>
   <a class="nav-item nav-link" href="index3.html">Stats</a>
 </nav>
 
 
 
-    <!--     container for the list  -->
+<!--     container for the list  -->
 
-<div class="col-md-12 col-sm-12 col-xs-12 coinlist">
-  <table id="coinTable" style="width:100%">
+<div class="col-md-9 col-sm-9 col-xs-12 exchangelist">
+  <table id="exchangeTable" style="width:100%">
     <tbody>
         <tr>
             <th id="hRank">Rank</th>
+            <th id="hImage"></th>
             <th id="hName">Name</th>
-            <th>Price</th>
-            <th id="h24h">24h</th>
-            <th>Market Cap</th>
-            <th>24h Volume</th>
-            <th id="hSupply">Circulating Supply</th>
-            <th>ATH Price</th>
-            <th id="hAthDate">ATH Date</th>
-            <th id="hFromAth">% from ATH</th>
-            <th id="hToAth">% to ATH</th>
+            <th id="hScore">Trustscore</th>
+            <th id="hVolume">24h Volume</th>
+            <th id="hCountry">Country</th>
+            <th id="hYear">Year</th>
+            <th id="hUrl">URL</th>
         </tr>
     </tbody>
   </table>
 </div>
 
 
+<div class="col-md-3 col-sm-3 col-xs-12 exchangelist">
+  <script src="https://widgets.coingecko.com/coingecko-beam-widget.js"></script>
+  <coingecko-beam-widget  type="all" height="1000" locale="en"></coingecko-beam-widget>
 
+</div>
 </div>
 
 
-<!--      Footer fixed to bottom  -->
-<div class="col-md-12 col-sm-12 col-xs-12 foooter">
-  <br>
-    <h3>axelMarketCap.com</h3>
-  <br>
-</div>
+  <!--      Footer fixed to bottom  -->
+  <div class="col-md-12 col-sm-12 col-xs-12 foooter">
+    <br>
+      <h3>axelMarketCap.com</h3>
+    <br>
+  </div>
 
 
-  </body>
-</html>
+    </body>
+<html>
